@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Backend Developer Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- DEVICON CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Pretendard",
+            -apple-system,
+            BlinkMacSystemFont,
+            sans-serif;
+
+            background: #ffffff;
+            color: #111827;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        :root {
+            --main: #2563eb;
+            --main-light: #eff6ff;
+            --sub: #6b7280;
+            --line: #e5e7eb;
+            --bg: #ffffff;
+            --card: #f8fafc;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+        /* NAV */
+
+        nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .logo span {
+            color: var(--main);
+        }
+
+        .menu {
+            display: flex;
+            gap: 34px;
+        }
+
+        .menu a {
+            color: #374151;
+            font-weight: 500;
+            transition: 0.25s;
+        }
+
+        .menu a:hover {
+            color: var(--main);
+        }
+
+        /* HERO */
+
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 120px;
+            background: linear-gradient(to bottom,
+            #ffffff 0%,
+            #f8fbff 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns:1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 16px;
+            border-radius: 999px;
+
+            background: var(--main-light);
+            color: var(--main);
+
+            font-size: 0.95rem;
+            font-weight: 600;
+
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 1.05;
+            letter-spacing: -0.06em;
+            margin-bottom: 26px;
+        }
+
+        .hero h1 span {
+            color: var(--main);
+        }
+
+        .hero p {
+            font-size: 1.08rem;
+            color: var(--sub);
+            max-width: 700px;
+            margin-bottom: 38px;
+        }
+
+        .button-wrap {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 28px;
+            border-radius: 14px;
+            font-weight: 700;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--main);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--line);
+            background: white;
+            color: #111827;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--main);
+            color: var(--main);
+        }
+
+        /* PROFILE CARD */
+
+        .profile-card {
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            padding: 34px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-top {
+            margin-bottom: 32px;
+        }
+
+        .profile-top h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .profile-top p {
+            color: var(--sub);
+            margin-bottom: 0;
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info {
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .info:last-child {
+            border: none;
+            padding-bottom: 0;
+        }
+
+        .info-title {
+            font-size: 0.9rem;
+            color: var(--sub);
+            margin-bottom: 8px;
+        }
+
+        .info-desc {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        /* SECTION */
+
+        section {
+            padding: 110px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: var(--sub);
+            margin-bottom: 52px;
+        }
+
+        /* STACK */
+
+        .stack-wrap {
+            display: grid;
+            grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+        }
+
+        .stack-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+
+            padding: 28px 20px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .stack-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-color: #2563eb;
+        }
+
+        .stack-card i {
+            font-size: 3.2rem;
+        }
+
+        .stack-card span {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* PROJECT */
+
+        .projects {
+            display: grid;
+            grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+            gap: 26px;
+        }
+
+        .project {
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+
+        .project-top {
+            height: 210px;
+            background: linear-gradient(135deg,
+            #2563eb,
+            #60a5fa);
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .project-body {
+            padding: 30px;
+        }
+
+        .project-body h3 {
+            font-size: 1.25rem;
+            margin-bottom: 14px;
+        }
+
+        .project-body p {
+            color: var(--sub);
+            margin-bottom: 24px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--main-light);
+            color: var(--main);
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--sub);
+            background: #fafafa;
+        }
+
+        @media (max-width: 900px) {
+
+            .hero-grid {
+                grid-template-columns:1fr;
+            }
+
+            .menu {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+
+<nav>
+    <div class="container nav-inner">
+
+        <div class="logo">
+            DEV<span>.</span>PORTFOLIO
+        </div>
+
+        <div class="menu">
+            <a href="#about">About</a>
+            <a href="#stack">Stack</a>
+            <a href="#projects">Projects</a>
+        </div>
+
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<main class="hero">
+
+    <div class="container hero-grid">
+
+        <div>
+
+            <div class="badge">
+                Backend Developer · SI Company
+            </div>
+
+            <h1>
+                기업 LMS 구축 경험을 가진<br>
+                <span>백엔드 개발자</span>
+            </h1>
+
+            <p>
+                SI 회사에서 재직 중이며 여러 기업의 LMS 웹사이트 구축 프로젝트를 수행했습니다.
+                Spring 기반 백엔드 개발을 중심으로,
+                Thymeleaf와 JavaScript를 활용한 화면 개발까지 함께 담당하고 있습니다.
+                안정적인 서비스 구조와 유지보수를 고려한 개발을 지향합니다.
+            </p>
+
+            <div class="button-wrap">
+                <a href="#projects" class="btn btn-primary">
+                    프로젝트 보기
+                </a>
+
+                <a href="https://github.com/" target="_blank" class="btn btn-outline">
+                    GitHub
+                </a>
+            </div>
+
+        </div>
+
+        <!-- PROFILE CARD -->
+
+        <div class="profile-card">
+
+            <div class="profile-top">
+                <h3>Backend Developer</h3>
+
+                <p>
+                    Spring · Java · Thymeleaf · JavaScript
+                </p>
+            </div>
+
+            <div class="info-list">
+
+                <div class="info">
+                    <div class="info-title">현재 업무</div>
+                    <div class="info-desc">
+                        기업 LMS 구축 및 유지보수
+                    </div>
+                </div>
+
+                <div class="info">
+                    <div class="info-title">주요 기술</div>
+                    <div class="info-desc">
+                        Java / Spring / Thymeleaf / JavaScript
+                    </div>
+                </div>
+
+                <div class="info">
+                    <div class="info-title">관심 분야</div>
+                    <div class="info-desc">
+                        백엔드 아키텍처 · 웹 서비스 최적화
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- STACK -->
+
+<section id="stack">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Tech Stack
+        </h2>
+
+        <p class="section-desc">
+            실무 프로젝트에서 사용한 기술들입니다.
+        </p>
+
+        <div class="stack-wrap">
+
+            <div class="stack-card">
+                <i class="devicon-java-plain colored"></i>
+                <span>Java</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-spring-plain colored"></i>
+                <span>Spring Boot</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-spring-plain colored"></i>
+                <span>Spring MVC</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-hibernate-plain colored"></i>
+                <span>JPA</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-mysql-plain colored"></i>
+                <span>MyBatis</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-oracle-original colored"></i>
+                <span>Oracle</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-mariadb-original colored"></i>
+                <span>MariaDB</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-thymeleaf-plain colored"></i>
+                <span>Thymeleaf</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-html5-plain colored"></i>
+                <span>HTML5</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-css3-plain colored"></i>
+                <span>CSS3</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-javascript-plain colored"></i>
+                <span>JavaScript</span>
+            </div>
+
+            <div class="stack-card">
+                <i class="devicon-git-plain colored"></i>
+                <span>Git</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROJECT -->
+
+<section id="projects">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Featured Projects
+        </h2>
+
+        <p class="section-desc">
+            실제 기업 프로젝트 기반 경험입니다.
+        </p>
+
+        <div class="projects">
+
+            <!-- PROJECT 1 -->
+
+            <div class="project">
+
+                <div class="project-top">
+                    LMS Platform
+                </div>
+
+                <div class="project-body">
+
+                    <h3>
+                        기업 교육 LMS 구축
+                    </h3>
+
+                    <p>
+                        사내 교육 운영을 위한 LMS 시스템 구축 프로젝트.
+                        강의 관리, 수강 신청, 진도율 처리, 관리자 기능 등을 개발했습니다.
+                    </p>
+
+                    <div class="tags">
+                        <div class="tag">Spring</div>
+                        <div class="tag">Oracle</div>
+                        <div class="tag">Thymeleaf</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PROJECT 2 -->
+
+            <div class="project">
+
+                <div class="project-top">
+                    Admin System
+                </div>
+
+                <div class="project-body">
+
+                    <h3>
+                        관리자 페이지 개발
+                    </h3>
+
+                    <p>
+                        교육 콘텐츠 및 회원 데이터를 관리하는 관리자 시스템 개발.
+                        테이블 UI 및 검색 기능을 JavaScript로 구현했습니다.
+                    </p>
+
+                    <div class="tags">
+                        <div class="tag">JavaScript</div>
+                        <div class="tag">HTML</div>
+                        <div class="tag">CSS</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PROJECT 3 -->
+
+            <div class="project">
+
+                <div class="project-top">
+                    Maintenance
+                </div>
+
+                <div class="project-body">
+
+                    <h3>
+                        유지보수 및 기능 개선
+                    </h3>
+
+                    <p>
+                        운영 중인 LMS 서비스 유지보수 및 신규 기능 개발.
+                        사용자 피드백 기반 UI 개선과 성능 이슈 대응을 수행했습니다.
+                    </p>
+
+                    <div class="tags">
+                        <div class="tag">Spring Boot</div>
+                        <div class="tag">MyBatis</div>
+                        <div class="tag">Git</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <div class="container">
+        © 2026 Backend Developer Portfolio
+    </div>
+</footer>
+
+</body>
+</html>
